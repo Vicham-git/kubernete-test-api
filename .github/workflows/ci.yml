@@ -78,6 +78,9 @@
         - name: Checkout
           uses: actions/checkout@v4
 
+        - name: Setup kubectl
+          uses: azure/setup-kubectl@v4
+
         - name: Check Kubernetes
           run: |
             kubectl version --client
