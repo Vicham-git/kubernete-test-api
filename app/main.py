@@ -63,3 +63,13 @@ def get_products():
             }
         ]
     }
+@app.post("/createuser")
+def create_user():
+    return {
+        "message": "User created successfully",
+        "user": {
+            "id": 1,
+            "name": "Vicham",
+            "email": "vicham@example.com"
+        }
+    }
