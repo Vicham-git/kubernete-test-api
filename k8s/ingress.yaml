@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-api
+  namespace: python-api
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: python-api.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: python-api
+                port:
+                  number: 80
