@@ -73,3 +73,14 @@ def create_user():
             "email": "vicham@example.com"
         }
     }
+
+@app.post("/createuserv2")
+def create_user():
+    return {
+        "message": "User created successfully",
+        "user": {
+            "id": 1,
+            "name": "Vicham",
+            "email": "vicham@example.com"
+        }
+    }
