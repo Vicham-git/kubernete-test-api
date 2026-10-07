@@ -68,7 +68,7 @@
           run: |
             docker push "$IMAGE_NAME:$IMAGE_TAG"
             docker push "$IMAGE_NAME:latest"
-    
+
     deploy:
       name: Deploy
       needs: build
@@ -80,24 +80,21 @@
 
         - name: Check Kubernetes
           run: |
+            kubectl version --client
             kubectl cluster-info
             kubectl get nodes
 
         - name: Apply namespace
-          run: |
-            kubectl apply -f k8s/namespace.yaml
+          run: kubectl apply -f k8s/namespace.yaml
 
         - name: Apply deployment
-          run: |
-            kubectl apply -f k8s/deployment.yaml
+          run: kubectl apply -f k8s/deployment.yaml
 
         - name: Apply service
-          run: |
-            kubectl apply -f k8s/service.yaml
+          run: kubectl apply -f k8s/service.yaml
 
         - name: Apply ingress
-          run: |
-            kubectl apply -f k8s/ingress.yaml
+          run: kubectl apply -f k8s/ingress.yaml
 
         - name: Update image
           run: |
@@ -116,3 +113,4 @@
             kubectl get deployment -n $NAMESPACE
             kubectl get pods -n $NAMESPACE
             kubectl get service -n $NAMESPACE
+            kubectl get ingress -n $NAMESPACE
