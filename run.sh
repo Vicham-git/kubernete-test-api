@@ -55,5 +55,5 @@ echo "=== Ingress ==="
 kubectl get ingress -n "$NAMESPACE"
 
 echo "=== Deployment completed ==="
-echo "API: http://python-api.localhost"
-echo "Swagger: http://python-api.localhost/docs"
+echo "API:     https://python-api.167.179.41.65.sslip.io"
+echo "Swagger: https://python-api.167.179.41.65.sslip.io/docs"
