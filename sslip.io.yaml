@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sslip-dns
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sslip-dns
+  template:
+    metadata:
+      labels:
+        app: sslip-dns
+    spec:
+      containers:
+        - name: dns-server
+          image: cunnie/sslip.io-dns-server
+          ports:
+            - containerPort: 53
+              protocol: UDP
+            - containerPort: 53
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sslip-dns
+  namespace: kube-system
+spec:
+  selector:
+    app: sslip-dns
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+    - name: dns-tcp
+      port: 53
+      protocol: TCP

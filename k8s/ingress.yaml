@@ -6,15 +6,10 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: traefik
-  tls:
-    - hosts:
-        - python-api.167.179.41.65.sslip.io
-      secretName: python-api-tls-cert
   rules:
-    - host: python-api.167.179.41.65.sslip.io
+    - host: python-api-192.168.8.90.sslip.io
       http:
         paths:
           - path: /
